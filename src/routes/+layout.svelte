@@ -1,4 +1,7 @@
-<a href="/">Főoldal</a>
-<a href="/articles">Cikkek</a>
-<hr />
+<script>
+	import Header from "$lib/components/Header.svelte";
+
+</script>
+
+<Header />
 <slot />
