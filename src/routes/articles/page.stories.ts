@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 
-import Header from './Header.svelte';
+import Page from './+page.svelte';
 
 const meta = {
-    title: 'Components/Header',
-    component: Header,
-} satisfies Meta<Header>;
+    title: 'Pages/Articles',
+    component: Page,
+} satisfies Meta<Page>;
 
 export default meta;
 
