@@ -23,6 +23,10 @@ type RootTranslation = {
 	 * k​i​t​2​ ​-​ ​b​e​s​t​ ​s​v​e​l​t​e​ ​a​p​p
 	 */
 	title: string
+	/**
+	 * A​r​t​i​c​l​e​s
+	 */
+	articles: string
 }
 
 export type TranslationFunctions = {
@@ -34,6 +38,10 @@ export type TranslationFunctions = {
 	 * kit2 - best svelte app
 	 */
 	title: () => LocalizedString
+	/**
+	 * Articles
+	 */
+	articles: () => LocalizedString
 }
 
 export type Formatters = {}

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import LL from '$i18n/i18n-svelte'
 
 	export let data: PageData;
 </script>
 
-ez itt az articles lista
+{$LL.articles()}
 
 <pre>{JSON.stringify(data.posts)}</pre>

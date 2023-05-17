@@ -11,4 +11,34 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    args: {
+        data: {
+            locale: 'en',
+            posts: [
+                {
+                    title: `Title for post1 goes here`,
+                    content: `Content for post1 goes here`
+                }
+            ]
+        }
+    }
+};
+
+export const MultipleArticles: Story = {
+    args: {
+        data: {
+            locale: 'en',
+            posts: [
+                {
+                    title: `Title for post1 goes here`,
+                    content: `Content for post1 goes here`
+                },
+                {
+                    title: `Title for post2 goes here`,
+                    content: `Content for post2 goes here`
+                }
+            ]
+        }
+    }
+};
