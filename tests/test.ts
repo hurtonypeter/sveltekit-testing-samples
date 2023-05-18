@@ -18,15 +18,18 @@ test.describe('basic test', () => {
 	test('index page has expected h1', async ({ page }) => {
 		await page.goto('/');
 		await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible();
+		await expect(page).toHaveScreenshot();
 	});
 	
 	test('index page has expected documentation', async ({ page }) => {
 		await page.goto('/');
 		await expect(page.getByText('documentation')).toBeVisible();
+		await expect(page).toHaveScreenshot();
 	});
 
 	test('articles page should load', async ({ page }) => {
 		await page.goto('/articles');
 		await expect(page.getByText('Articles')).toBeVisible();
+		await expect(page).toHaveScreenshot();
 	});
 })
