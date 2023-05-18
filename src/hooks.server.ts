@@ -1,7 +1,9 @@
 import { detectLocale, i18n, isLocale } from '$i18n/i18n-util'
 import { loadAllLocales } from '$i18n/i18n-util.sync'
-import type { Handle, RequestEvent } from '@sveltejs/kit'
+import type { Handle, RequestEvent, HandleFetch } from '@sveltejs/kit'
 import { initAcceptLanguageHeaderDetector } from 'typesafe-i18n/detectors'
+
+import { env } from '$env/dynamic/private';
 
 // implementation is based on the sveltekit demo:
 // https://github.dev/ivanhofer/typesafe-i18n-demo-sveltekit
@@ -44,3 +46,15 @@ const getPreferredLocale = ({ request }: RequestEvent) => {
 
 	return detectLocale(acceptLanguageDetector)
 }
+
+
+export const handleFetch = (async ({ request, fetch }) => {
+	const url = new URL(request.url);
+	
+	request = new Request(
+		request.url.replace(url.origin, env.API_BASE_URL),
+		request
+	);
+
+    return fetch(request);
+}) satisfies HandleFetch;

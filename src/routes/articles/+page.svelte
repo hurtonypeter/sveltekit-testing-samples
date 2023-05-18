@@ -5,6 +5,6 @@
 	export let data: PageData;
 </script>
 
-{$LL.articles()}
+<h1>{$LL.articles()}</h1>
 
-<pre>{JSON.stringify(data.posts)}</pre>
+<pre>{JSON.stringify(data.posts, null, 3)}</pre>

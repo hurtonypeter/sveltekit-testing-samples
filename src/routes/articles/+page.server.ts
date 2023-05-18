@@ -1,12 +1,9 @@
 import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load = (async ({ fetch }) => {
+	const res = await fetch(`/api/articles`);
+
 	return {
-		posts: [
-			{
-				title: `Title for post1 goes here`,
-				content: `Content for post1 goes here`
-			}
-		]
+		posts: await res.json()
 	};
 }) satisfies PageServerLoad;
