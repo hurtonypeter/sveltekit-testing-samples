@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 import { GenericContainer } from 'testcontainers';
 import type { StartedTestContainer } from 'testcontainers';
 
@@ -25,6 +26,12 @@ test.describe('basic test', () => {
 		await page.goto('/');
 		await expect(page.getByText('documentation')).toBeVisible();
 		await expect(page).toHaveScreenshot();
+	});
+
+	test('index page accessability', async ({ page }) => {
+		await page.goto('/');
+		const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    	expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
 	test('articles page should load', async ({ page }) => {
