@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  postgres:
+    build:
+      context: dependencies/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: rootpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5455:5432"
+
+  keycloak:
+    build:
+      context: dependencies/keycloak
+      args:
+        REALM_JSON: realm.json
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=Password123
+      - KC_DB_URL=jdbc:postgresql://postgres/keycloak
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=rootpassword
+      - NO_THEME_CACHE=true
+      - KC_HOSTNAME=localhost
+    ports:
+      - "8443:8443"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
