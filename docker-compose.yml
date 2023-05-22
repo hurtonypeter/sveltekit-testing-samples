@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   postgres:
@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5455:5432"
+      - '5455:5432'
 
   keycloak:
     build:
@@ -25,8 +25,12 @@ services:
       - KC_DB_PASSWORD=rootpassword
       - NO_THEME_CACHE=true
       - KC_HOSTNAME=localhost
+      - KC_HTTPS_CERTIFICATE_FILE=/opt/keycloak/cert/cert.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/opt/keycloak/cert/cert.key
+    volumes:
+      - ./dependencies/keycloak/cert:/opt/keycloak/cert
     ports:
-      - "8443:8443"
+      - '8443:8443'
     depends_on:
       - postgres
 

@@ -9,5 +9,6 @@
 	<a href="/articles">Cikkek</a>
 	<a href="/kutyafulek">Kutyfülék</a>
 	<a href="/profile">Profile</a>
+	<a href="/profile2">profile2</a>
 	<LocaleSwitcher />
 </header>

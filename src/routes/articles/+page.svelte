@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import LL from '$i18n/i18n-svelte'
+	import LL from '$i18n/i18n-svelte';
 
 	export let data: PageData;
 </script>

@@ -8,8 +8,9 @@ import { SvelteKitAuth } from '$lib/auth';
 // import { signIn, signOut } from '@auth/sveltekit/client';
 
 import { sequence } from '@sveltejs/kit/hooks';
-import GitHub from '@auth/core/providers/github';
+import GitHub, { type GitHubProfile } from '@auth/core/providers/github';
 import Keycloak from '@auth/core/providers/keycloak';
+import Google from '@auth/core/providers/google';
 //import KeycloakProvider from "next-auth/providers/keycloak";
 
 import { env } from '$env/dynamic/private';
@@ -64,19 +65,27 @@ export const handleFetch = (async ({ request, fetch }) => {
 	return fetch(request);
 }) satisfies HandleFetch;
 
-export const handleee = SvelteKitAuth({
-	providers: [
-		Keycloak({
-			issuer: 'https://localhost:8443/realms/test',
-			clientId: 'frontend',
-			clientSecret: 'dsfdsf'
-		})
-	]
-});
-
 export const handle: Handle = sequence(
+	aa__handle,
+
 	SvelteKitAuth({
-		providers: [GitHub({ clientId: 'GITHUB_ID', clientSecret: 'GITHUB_SECRET' })]
-	}),
-	aa__handle
+		secret: '645cf3d6d1455dfe1131b9b017c8ce741e57b0dbf0a15914f641ff98a433c551',
+		trustHost: true,
+		providers: [
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			// Keycloak({
+			// 	issuer: 'https://localhost:8443/realms/test',
+			// 	clientId: 'frontend',
+			// 	clientSecret: 'dsfdsf'
+			// })
+			//Google({ clientId: 'GITHUB_ID', clientSecret: 'GITHUB_SECRET' }),
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			GitHub({
+				clientId: '45b76f0b9453a5fbc39a',
+				clientSecret: '41a291c7159b2fb0fb20649751729142bee49d16'
+			})
+		]
+	})
 );
