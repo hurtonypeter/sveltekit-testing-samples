@@ -1,10 +1,10 @@
 import type { PageServerLoad } from './$types';
+import type { Article } from './page.models';
 
-export const load = (async ({ fetch, locals: { getSession } }) => {
+export const load = (async ({ fetch }): Promise<{ posts: Article[] }> => {
 	const res = await fetch(`/api/articles`);
 
 	return {
 		posts: await res.json(),
-		session: await getSession()
 	};
 }) satisfies PageServerLoad;

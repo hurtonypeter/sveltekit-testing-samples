@@ -3,15 +3,11 @@ import { loadAllLocales } from '$i18n/i18n-util.sync';
 import type { Handle, RequestEvent, HandleFetch } from '@sveltejs/kit';
 import { initAcceptLanguageHeaderDetector } from 'typesafe-i18n/detectors';
 
-// import { SvelteKitAuth } from '@auth/sveltekit';
 import { SvelteKitAuth } from '$lib/auth';
-// import { signIn, signOut } from '@auth/sveltekit/client';
 
 import { sequence } from '@sveltejs/kit/hooks';
 import GitHub, { type GitHubProfile } from '@auth/core/providers/github';
 import Keycloak from '@auth/core/providers/keycloak';
-import Google from '@auth/core/providers/google';
-//import KeycloakProvider from "next-auth/providers/keycloak";
 
 import { env } from '$env/dynamic/private';
 
@@ -74,18 +70,17 @@ export const handle: Handle = sequence(
 		providers: [
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			// Keycloak({
-			// 	issuer: 'https://localhost:8443/realms/test',
-			// 	clientId: 'frontend',
-			// 	clientSecret: 'dsfdsf'
-			// })
-			//Google({ clientId: 'GITHUB_ID', clientSecret: 'GITHUB_SECRET' }),
+			Keycloak({
+				issuer: 'https://account.c2f12f5e1a9b4b57b285.westeurope.aksapp.io/realms/sps',
+				clientId: 'frontend',
+				clientSecret: 'XiiGmlkY4ArduQt6KY4iboHnxJR8n9O1',
+			}),
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			GitHub({
-				clientId: '45b76f0b9453a5fbc39a',
-				clientSecret: '41a291c7159b2fb0fb20649751729142bee49d16'
-			})
-		]
-	})
+			// GitHub({
+			// 	clientId: '45b76f0b9453a5fbc39a',
+			// 	clientSecret: '41a291c7159b2fb0fb20649751729142bee49d16'
+			// })
+		],
+	}),
 );
